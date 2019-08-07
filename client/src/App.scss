@@ -1,0 +1,430 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900&display=swap');
+
+*{
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+// Utility variables
+$dark: #2A2534;
+$semi-dark: #635876;
+$light: #ccbae7;
+$purple: #453166;
+$secondary-purple: #856fc2;
+$red: #F9665C;
+
+$pizzabg: #fff;
+$pizzacolor: #EF3741;
+
+$takeoutbg: #222;
+$takeoutcolor: #ffcf10;
+
+$americanbg: linear-gradient(-30deg, #203352 50%, #b9324f 50%);
+$americancolor: #fff;
+
+$kfcbg: rgb(187, 42, 47);
+$kfccolor: #FFF1E2;
+
+$shawarmabg: #ffd64e;
+$shawarmacolor: rgb(41, 37, 37);
+
+
+body{
+  margin: 0;
+  background: $dark;
+}
+
+//Utilities
+
+h1, h2, h3, h4, h5, h6, p, ul{
+  margin-top: 0;
+}
+
+a{
+  text-decoration: none;
+}
+
+button{
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-weight: 600;
+}
+
+button:focus, input:focus, textarea:focus, select:focus{
+  outline: none !important;
+}
+
+input, textarea, img{
+  display: block;
+  font-weight: 600;
+}
+
+.container{
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+
+.map{
+  margin-top: 1rem;
+  max-height: 0;
+  transition: max-height 0.5s;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.map-active{
+  max-height: 300px;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: $dark;
+  color: #f4f4f4;
+  font-size: 0.5rem !important;
+}
+
+.loader{
+  margin: 3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $semi-dark;
+
+  h1{
+    margin-right: 2rem;
+  }
+}
+
+// Header
+header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 95%;
+  margin: 5rem auto;
+
+  h2{
+    margin-top: 1rem;
+    font-weight: 900;
+    font-style: italic;
+    margin-bottom: 0;
+    color: $semi-dark;
+  }
+
+  img{
+    width: 200px;
+  }
+}
+
+// Search Food
+.search-food{
+  form{
+    select{
+      background: transparent;
+      color: $red;
+      width: 100%;
+      padding: 0.1rem 0.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      border: none;
+      border-bottom: 3px solid $red;
+
+      option{
+        background: $dark;
+        font-weight: 900;
+      }
+
+      option:disabled{
+        color: $semi-dark;
+      }
+    }
+  }
+}
+
+// Fast Food Shops
+.Pizza{
+  background: $pizzabg;
+  color: $pizzacolor;
+
+  &:hover{
+    background: darken($pizzabg, 5%);
+  }
+
+  .fast-food-text{
+    border-left: 2px solid $pizzacolor;
+  }
+
+  .line-one, .line-two{
+    background: $pizzacolor;
+  }
+}
+
+.Takeout{
+  background: $takeoutbg;
+  color: $takeoutcolor;
+
+  &:hover{
+    background: darken($takeoutbg, 5%);
+  }
+
+  .fast-food-text{
+    border-left: 2px solid $takeoutcolor;
+  }
+
+  .line-one, .line-two{
+    background: $takeoutcolor;
+  }
+}
+
+.KFC{
+  background: $kfcbg;
+  color: $kfccolor;
+
+  &:hover{
+    background: darken($kfcbg, 5%);
+  }
+
+  .fast-food-text{
+    border-left: 2px solid $kfccolor;
+  }
+
+  .line-one, .line-two{
+    background: $kfccolor;
+  }
+}
+
+.American{
+  background: $americanbg;
+  color: $americancolor;
+
+  &:hover{
+    opacity: 0.8;
+  }
+
+  .fast-food-text{
+    border-left: 2px solid $americancolor;
+  }
+
+  .line-one, .line-two{
+    background: $americancolor;
+  }
+}
+
+.Shawarma{
+  background: $shawarmabg;
+  color: $shawarmacolor;
+
+  &:hover{
+    background: darken($shawarmabg, 5%);
+  }
+
+  .fast-food-text{
+    border-left: 2px solid $shawarmacolor;
+  }
+
+  .line-one, .line-two{
+    background: $shawarmacolor;
+  }
+}
+
+// Fast Foods
+
+.fast-food{
+  margin-top: 1rem;
+  border-radius: 0.8rem 0.8rem 0.1rem 0.1rem;
+  box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+  animation-name: animateFastfood;
+  animation-duration: 1.5s;
+
+  .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 4;
+    .fast-food-text{
+      padding-left: 0.5rem;
+      h1, h2{
+        margin: 0; 
+      }
+      h1{
+        font-style: italic;
+        font-weight: 900;
+      }
+      h2{
+        font-size: 0.8rem;
+      }
+    }
+  
+    .fast-food-logo{
+      padding-right: 0.5rem;
+      img{
+        width: 80px;
+      }
+    }
+  }
+  .expand-icon{
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .line-one, .line-two{
+      height: 0.4rem;
+      width: 1.5rem;
+      border-radius: 0.2rem;
+      transform-origin: center;
+    }
+    .line-one{
+      transform: rotate(90deg);
+      transition: transform 0.5s;
+    }
+    .line-two{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  .active{
+    .line-one{
+      transform: rotate(0deg);
+    }
+  }
+}
+
+// Food Branch
+
+.food-branch{
+  background: $purple;
+  color: $light;
+  border-radius: 0.1rem;
+  box-shadow: -1px 1px 4px 1px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s;
+  
+  h1, h2, h3, ul, p, li{
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  h1{
+    font-weight: 900;
+    color: $secondary-purple;
+  }
+  h2{
+    span{
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: $secondary-purple;
+    }
+    font-size: 1.2rem;
+  }
+  p{
+    font-size: 1.2rem;
+      font-weight: 900;
+      color: $secondary-purple;
+  }
+
+  ul{
+    padding-left: 1rem;
+    li{
+      padding-bottom: 0.5rem;
+      list-style: none;
+      span{
+        font-weight: 700;
+        padding-right: 0.8rem;
+      }
+    }
+  }
+
+  button{
+    background: $light;
+    width: 100%;
+    padding: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: $dark;
+    border-radius: 0.3rem;
+    border: none;
+    box-shadow: 0px 4px 1px 1px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.5s;
+
+    &:hover{
+      box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .svg-inline--fa{
+      display: inline;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.branch-active{
+  max-height: 1000px;
+  transition: max-height 1s;
+
+  h1, h2, h3, ul, p, li{
+    opacity: 1;
+    transition: opacity 0.0.8s;
+  }
+}
+
+@media(min-width: 768px){
+  .container{
+    width: 80%;
+  }
+
+  header{
+    img{
+      width: 320px;
+    }
+  }
+
+  .search-food{
+    form{
+      select{
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .fast-food{
+    flex-direction: row;
+
+    .content{
+      justify-content: flex-start;
+    }
+    .expand-icon{
+      margin: 0;
+    }
+  }
+
+  .food-branch{
+    ul{
+      padding-left: 2.8rem;
+    }
+  }
+}
+
+@keyframes animateFastfood{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
